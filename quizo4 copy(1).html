@@ -48,13 +48,13 @@
 <body>
     <center>
     <div class="main">
-        <div class="ques"><h1>Which resembles this sign language?</h1><img src="../quizes/aunt.png"></div>
+        <div class="ques"><h1>Which resembles this sign language?</h1><img src="../quizes/mom.png"></div>
         <div class="options1">
-          <button class="o1">Sister</button>
-          <button class="o2">Dad</button> 
+          <button class="o1">Dad</button>
+          <button class="o2">Aunt</button> 
         </div>
         <div class="option2" ></div>
-          <button class="o3">Aunt</button> 
+          <button class="o3">Sister</button> 
           <button class="o4">Mom</button> 
         </div>
     </div>
@@ -68,10 +68,10 @@
     let o4ansr=document.querySelector('.o4');
     o1ansr.addEventListener("click",() => {document.querySelector('.o1').style.cssText='background-color: red;color: white;'});
     o2ansr.addEventListener("click",() => {document.querySelector('.o2').style.cssText='background-color: red;color: white;'});
-    o3ansr.addEventListener("click",() => {document.querySelector('.o3').style.cssText='background-color: green;color: white;';
-        next.onclick = function(){location.href='quizo4.html'} 
+    o3ansr.addEventListener("click",() => {document.querySelector('.o3').style.cssText='background-color: red;color: white;'});
+    o4ansr.addEventListener("click",() => {document.querySelector('.o4').style.cssText='background-color: green;color: white;';
+        next.onclick = function(){location.href='quizo3.html'} 
     });
-    o4ansr.addEventListener("click",() => {document.querySelector('.o4').style.cssText='background-color: red;color: white;'});
 
 </script>
 </body>
