@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text To ASL Video Converter</title>
+    <link href='https://fonts.googleapis.com/css?family=Bubblegum Sans' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Bubblegum Sans';
+            background-color: #f4f7f6;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            animation: gradientAnimation 10s ease infinite; 
+    
+        }
+        @keyframes gradientAnimation {
+    0% { background: #6ba3d7ea; }
+   50% { background: #5394c661; }
+   100% { background: #5b81a4b5; }
+ }
+        .container {
+            background-color: white;
+            width: 80%;
+            height:600px;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+inset -4px -4px 6px 0 rgba(255,255,255,.2),
+inset 4px 4px 6px 0 rgba(241, 237, 237, 0.934);
+}
+        
+
+        input, button {
+            padding: 10px;
+            font-size: 25px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius:50px;
+            height:55px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        video {
+            width: 80%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+        a{
+            color: black;
+            font-size: 25px;
+            text-decoration: none;
+        }
+        input{
+            padding:1px;
+    height: 35px;
+    width: 300px;
+    margin-top: 30px;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html">Home</a>
+    <div class="container">
+        <h1>Text To ASL Video Converter</h1>
+        <input type="text" id="inputText" placeholder="Enter text here..." />
+        <button onclick="convertToPresentTense()">Convert</button>
+        
+        <video id="videoPlayer" controls>
+            <source id="videoSource" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        let convertedText = "";
+        let videoFiles = {
+            "walk": "walk.mp4",
+            "play": "play.mp4",
+            "run": "run.mp4",
+            "eat": "eat.mp4",
+            "write": "write.mp4",
+            "sing": "sing.mp4",
+            "go": "go.mp4",
+            "have": "have.mp4",
+            "do": "do.mp4",
+            "sleep": "sleep.mp4",
+            "see": "see.mp4",
+            "buy": "buy.mp4",
+            "know": "know.mp4",
+            "drink": "drink.mp4",
+            "take": "take.mp4",
+            "think": "think.mp4",
+            "hear": "hear.mp4",
+            "say": "say.mp4",
+            "wear": "wear.mp4",
+            "always":"always.mp4",
+            "animals":"animals.mp4",
+            "at":"at.mp4",
+            "beautiful":"beautiful.mp4",
+            "for":"for.mp4",
+            "from":"from.mp4",
+            "he":"he.mp4",
+            "her":"her.mp4",
+            "here":"here.mp4",
+            "him":"him.mp4",
+            "how":"how.mp4",
+            "i":"i.mp4",
+            "it":"it.mp4",
+            "know":"know.mp4",
+            "long":"long.mp4",
+            "never":"never.mp4",
+            "she":"she.mp4",
+            "short":"short.mp4",
+            "tall":"tall.mp4",
+            "that":"that.mp4",
+            "there":"there.mp4",
+            "they":"they.mp4",
+            "thin":"thin.mp4",
+            "this":"this.mp4",
+            "we":"we.mp4",
+            "what":"what.mp4",
+            "when":"when.mp4",
+            "where":"where.mp4",
+            "why":"why.mp4",
+            "you":"you.mp4"
+        };
+
+        function convertToPresentTense() {
+            const inputText = document.getElementById('inputText').value;
+            const words = inputText.split(/\s+/); // Split the input text into words
+            const presentTenseWords = words.map(word => convertWordToPresentTense(word));
+            
+            playVideosSequentially(presentTenseWords);
+        }
+
+        function convertWordToPresentTense(word) {
+           
+            const irregularVerbs = {
+                "walked": "walk",
+                "walking": "walk",
+                "played": "play",
+                "playing": "play",
+                "ran": "run",
+                "running": "run",
+                "ate": "eat",
+                "eating": "eat",
+                "wrote": "write",
+                "writing": "write",
+                "sang": "sing",
+                "singing": "sing",
+                "went": "go",
+                "going": "go",
+                "had": "have",
+                "having": "have",
+                "did": "do",
+                "doing": "do",
+                "slept": "sleep",
+                "sleeping": "sleep",
+                "saw": "see",
+                "seeing": "see",
+                "seen": "see",  // Added 'seen' to 'see'
+                "bought": "buy",
+                "buying": "buy",
+                "bought": "buy",
+                "known": "know",
+                "knowing": "know",
+                "drank": "drink",
+                "drinking": "drink",
+                "taken": "take",
+                "taking": "take",
+                "fallen": "fall",
+                "falling": "fall",
+                "began": "begin",
+                "beginning": "begin",
+                "came": "come",
+                "coming": "come",
+                "found": "find",
+                "finding": "find",
+                "thought": "think",
+                "thinking": "think",
+                "heard": "hear",
+                "hearing": "hear",
+                "said": "say",
+                "saying": "say",
+                "ran": "run",
+                "running": "run",
+                "worn": "wear",
+                "wearing": "wear",
+                "dog":"animals",
+                "cat":"animals",
+                "your":"you"
+            };
+
+            // If the word is already in present tense, return it as is
+            if (word === "am" || word === "is" || word === "are") {
+                return word;
+            }
+
+            // If the word is in the irregular verbs list, return the base form
+            if (irregularVerbs[word.toLowerCase()]) {
+                return irregularVerbs[word.toLowerCase()];
+            }
+
+            // Basic rules for regular verbs
+            if (word.toLowerCase().endsWith('ed')) {
+                // Remove the "ed" from regular verbs (e.g., "played" → "play")
+                return word.slice(0, -2);
+            }
+
+            if (word.toLowerCase().endsWith('ing')) {
+                // Remove the "ing" from continuous tense verbs (e.g., "running" → "run")
+                return word.slice(0, -3);
+            }
+
+            return word; // Return the word if no change is needed
+        }
+
+        function playVideosSequentially(words) {
+            let i = 0;
+            const videoPlayer = document.getElementById("videoPlayer");
+            const videoSource = document.getElementById("videoSource");
+
+            function loadNextVideo() {
+                if (i < words.length) {
+                    const word = words[i];
+                    const videoFile = videoFiles[word.toLowerCase()]; // Look for the video file
+
+                    if (videoFile) {
+                        // If the video file exists, load and play it
+                        videoSource.src = videoFile;
+                        videoPlayer.load(); // Reload the video player with the new video
+                        videoPlayer.play();
+                        i++; // Move to the next word
+                    } else {
+                        // If no video is found for the word, skip to the next word
+                        i++;
+                        loadNextVideo(); // Recurse to move to the next word
+                    }
+                }
+            }
+
+            loadNextVideo(); // Start the video sequence
+            videoPlayer.onended = loadNextVideo; // Move to the next video when the current one ends
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href='https://fonts.googleapis.com/css?family=Bubblegum Sans' rel='stylesheet'>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>ASL Sign Language Interpreter</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b4d1f4b5;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: 'Bubblegum Sans';font-size: 22px;
+        }
+
+        .container {
+            padding: 22px; /* Increased padding by 10% */
+            max-width: 880px; /* Increased max width by 10% */
+            margin: 55px auto; /* Increased margin by 10% */
+            background-color: rgb(232, 242, 251);
+            border-radius: 11px; /* Slightly increased border-radius */
+            box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        }
+
+        h1 {
+            font-size: 2.2rem; /* Increased font size by 10% */
+            margin-bottom: 22px; 
+            color:rgb(37, 31, 31)
+            
+        }
+        @keyframes gradientAnimation {
+             0% { background: #6ba3d7ea; }
+            50% { background: #5394c661; }
+            100% { background: #5b81a4b5; }
+          }
+          body {
+    animation: gradientAnimation 10s ease infinite; 
+}
+        #sentenceInput {
+            width: 88%; /* Increased width by 10% */
+            padding: 11px; /* Increased padding by 10% */
+            font-size: 1.1rem; /* Increased font size by 10% */
+            margin-bottom: 22px; /* Increased margin by 10% */
+            border-radius: 5.5px; /* Slightly increased border-radius */
+            border: 1.1px solid #ccc; /* Slightly increased border width */
+        }
+
+        button {
+            padding: 11px 22px; /* Increased padding by 10% */
+            background-color:  #95b6d7;
+            color: white;
+            font-size: 1.1rem; /* Increased font size by 10% */
+            border: none;
+            border-radius: 5.5px; /* Slightly increased border-radius */
+            cursor: pointer;
+            box-shadow: 0px 6px 20px rgba(207, 192, 192, 0.15);
+            transition: all 0.3s ease;
+            font-family: 'Bubblegum Sans';font-size: 22px;
+        }
+
+        button:hover {
+            background-color: #5494d8;
+
+    
+        }
+
+        #aslOutput {
+            margin-top: 22px; /* Increased margin by 10% */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #aslOutput img {
+            width: 55px; /* Increased image size by 10% */
+            height: 55px; /* Increased image size by 10% */
+            margin: 11px; /* Increased margin by 10% */
+        }
+        
+        #a{
+            text-decoration: none;
+            color: black;
+        }
+        .search-container{
+    background: #fff;
+    height: 30px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+.search-input{
+    padding:3px;
+    height: 7px;
+    width: 4px;
+    margin-top: 30px;
+    margin-left: 0px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.search-container:hover > .search-input{
+    width: 10px;
+    height:5px;
+    
+}
+
+.search-container .search-input{
+    background: transparent;
+    border: none;
+    outline:none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+
+}
+
+.search-container .search-btn .fas{
+    color: #5cbdbb;
+}
+
+@keyframes hover{
+  0% {transform: skew(0deg,0deg);}
+  25% {transform: skew(5deg, 5deg);}
+  75% {transform: skew(-5deg, -5deg);}
+  100% {transform: skew(0deg,0deg);}
+}
+
+.search-container:hover{
+  animation: hoverShake 0.15s linear 3;
+}
+footer {
+        background: #004d66;
+        color: #fff;
+        text-align: center;
+        position: fixed;
+        bottom:0;
+        width: 100%;
+        
+        padding-top: 1px;
+    }
+
+
+       
+    </style>
+</head>
+<body>
+    <header>
+        <a href="home.html">Home</a>
+    </header>
+    
+    <div class="container">
+        <h1>ASL Sign Language Interpreter</h1>
+        <div class="search-container">
+            <input type="text" name="search" placeholder="Type the sentence here..." class="search-input" id="sentenceInput">
+            <a href="#" class="search-btn">
+                    <i class="fas fa-search"></i>      
+            </a>
+        </div><br><button id="voiceSearchButton" onclick="startVoiceRecognition()">🎙️</button>
+        <button onclick="showASL()">Show ASL</button>
+
+        <div id="aslOutput">
+            <!-- ASL images will be displayed here -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 "Breaking Barriers, Building Bridges"</p>
+    </footer>
+    
+
+    <script>
+        // Check if the browser supports the SpeechRecognition API
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        // Ensure the browser supports SpeechRecognition
+        if (!SpeechRecognition) {
+            alert('Your browser does not support voice recognition.');
+        } else {
+            // Set the language for speech recognition
+            recognition.lang = 'en-US';
+
+            // Automatically stop recording when speech is recognized
+            recognition.continuous = false;
+
+            // When speech is recognized, it triggers this event
+            // When speech is recognized, it triggers this event
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('sentenceInput').value = transcript; // Correct reference to the input
+            };
+
+
+            // If there is an error
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+            };
+
+            // Start voice recognition when the microphone button is clicked
+            function startVoiceRecognition() {
+                recognition.start();
+            }
+        }
+        const aslImages = {
+            a: 'images/a1.jpg',
+            b: 'images/b1.jpg',
+            c: 'images/c1.jpg',
+            d: 'images/d1.jpg',
+            e: 'images/e1.jpg',
+            f: 'images/f1.jpg',
+            g: 'images/g1.jpg',
+            h: 'images/h1.jpg',
+            i: 'images/i1.jpg',
+            j: 'images/j1.jpg',
+            k: 'images/k1.jpg',
+            l: 'images/l1.jpg',
+            m: 'images/m1.jpg',
+            n: 'images/n1.jpg',
+            o: 'images/o1.jpg',
+            p: 'images/p1.jpg',
+            q: 'images/q1.jpg',
+            r: 'images/r1.jpg',
+            s: 'images/s1.jpg',
+            t: 'images/t1.jpg',
+            u: 'images/u1.jpg',
+            v: 'images/v1.jpg',
+            w: 'images/w1.jpg',
+            x: 'images/x1.jpg',
+            y: 'images/y1.jpg',
+            z: 'images/z1.jpg',
+            ' ': 'images/space.jpeg'  // Adding a space image for visual representation of space
+        };
+
+        function showASL() {
+            const sentence = document.getElementById('sentenceInput').value.trim().toLowerCase();
+            const outputDiv = document.getElementById('aslOutput');
+            outputDiv.innerHTML = ''; // Clear previous images
+
+            for (let char of sentence) {
+                if (aslImages[char]) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = aslImages[char];
+                    imgElement.alt = char === ' ' ? 'Space' : char.toUpperCase(); // Label space images appropriately
+                    outputDiv.appendChild(imgElement);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

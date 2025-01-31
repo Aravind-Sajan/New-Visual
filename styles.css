@@ -1,0 +1,142 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  
+  body {
+    font-family:"Bubblegum Sans";
+    line-height: 1.6;
+    color: #333;
+    background-image: url(../visualvoice/WhatsApp\ Image\ 2024-10-27\ at\ 06.16.09_afeb09d1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-size: 30px;
+    
+  }
+  
+  .container {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+  }
+  .container1{
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+    color:rgb(224, 231, 235);
+    font-size: 25px;
+    text-align: center;
+  }
+  #p1{
+    color:#e3f2fd;
+    font-size: 25px;
+  }
+  #aa{
+    color: black;
+  }
+  .resource-item:hover{
+    background-color:rgb(186, 210, 222);
+    color:darkolivegreen;
+  }
+  
+  header {
+    background-image: linear-gradient(to right, rgb(198, 206, 213) , rgb(0, 183, 255));
+    padding: 1rem 0;
+    color: #4baad6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-family: 'Bubblegum Sans';
+  }
+  
+  nav a {
+    margin: 0 1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: #e3f2fd;
+    text-decoration: underline;
+  }
+  
+  .hero {
+    background: url('hero-image.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .hero-text h2 {
+    font-size: 2.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.5rem;
+    color: #fff;
+    background: #0077b6;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .resources {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .resource-item {
+    flex: 1;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  footer {
+    background-image: linear-gradient(to right, rgb(198, 206, 213) , rgb(0, 183, 255));
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  footer form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  footer input, footer textarea {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  footer button {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
