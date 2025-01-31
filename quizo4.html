@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Bubblegum Sans' rel='stylesheet'>
+    <title>Document</title>
+    <style>
+        body{
+            align-items: center;
+            font-family: 'Bubblegum Sans';
+            background-image: url(../icon/Untitled\ design\ \(1\).png);
+            background-position: center;
+
+        }
+        button{
+            position: relative;
+            width: 300px;
+            height: 70px;
+            margin: 20px;
+            border-radius: 50px;
+            top: 180px;
+            transition: .2s;
+            font-family: 'Bubblegum Sans';
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        button:hover{
+            transform: scale(1.1);
+        }
+        .ques{
+            position: relative;
+            top: 90px;
+        }
+        .next{
+            transition: .2s;
+            position: relative;
+            float: right;
+            width: 100px;
+            height: 50px;
+            border-radius: 50px;
+            font-family: 'Bubblegum Sans';
+            font-size: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="main">
+        <div class="ques"><h1>Which resembles this sign language?</h1><img src="../quizes/dad.png"></div>
+        <div class="options1">
+          <button class="o1">Aunt</button>
+          <button class="o2">Sister</button> 
+        </div>
+        <div class="option2" ></div>
+          <button class="o3">Mom</button> 
+          <button class="o4">Dad</button> 
+        </div>
+    </div>
+    <button class="next" onclick="alert('Answer')">Finish</button>
+</center>
+<script>
+    let next = document.querySelector('.next');
+    let o1ansr = document.querySelector('.o1');
+    let o2ansr = document.querySelector('.o2');
+    let o3ansr = document.querySelector('.o3');
+    let o4ansr = document.querySelector('.o4'); // Correct answer
+
+    // Incorrect answers turn red
+    o1ansr.addEventListener("click", () => o1ansr.style.cssText = 'background-color: red; color: white;');
+    o2ansr.addEventListener("click", () => o2ansr.style.cssText = 'background-color: red; color: white;');
+    o3ansr.addEventListener("click", () => o3ansr.style.cssText = 'background-color: red; color: white;');
+
+    // Correct answer logic
+    o4ansr.addEventListener("click", () => {
+        o4ansr.style.cssText = 'background-color: green; color: white;';
+        
+        next.onclick = function() {
+            markLessonComplete();
+            location.href = '../aravind.html';
+        };
+    });
+
+    function markLessonComplete() {
+        let lessonKey = window.location.pathname; // Unique key for each lesson
+        if (!localStorage.getItem(lessonKey)) {
+            let progress = parseInt(localStorage.getItem("courseProgress") || 0);
+            progress = Math.min(progress + 25, 100); // Add 25% only once
+            localStorage.setItem("courseProgress", progress);
+            localStorage.setItem(lessonKey, "completed"); // Mark this lesson as completed
+        }
+    }
+</script>
+
+</body>
+</html>
